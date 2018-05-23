@@ -150,7 +150,7 @@ const getCleanDocument = (
   // create a new document to preserve the integrity of the original data
   const body = document.createElement('body');
   const nodes = dirty.childNodes;
-  const filteredNodes = [...nodes].filter(filterNode);
+  const filteredNodes = Array.from(nodes).filter(filterNode);
   const cleanNodes = [];
 
   // for each top level node, clean it up recursively
