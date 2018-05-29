@@ -141,8 +141,14 @@ describe('Google Docs Converter', () => {
     expect(doc.querySelectorAll('br').length).toBe(2);
   });
 
+  it('converts tables properly', () => {
+    const doc = parseHTML(docsSoap(documents.table));
+    expect(doc.querySelectorAll('table').length).toBe(1);
+    expect(doc.querySelectorAll('td').length).toBe(6);
+  });
+
   it('ignores comments', () => {
     const doc = parseHTML(docsSoap(documents.endFragment));
-    expect(doc.textContent).toBe('Only text')
-  })
+    expect(doc.textContent).toBe('Only text');
+  });
 });
