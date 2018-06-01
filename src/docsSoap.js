@@ -97,7 +97,13 @@ const getCleanNode = (
   if (node.childNodes && (node.childNodes.length <= 1 || tagsToPreserve.includes(node.nodeName))) {
     let newWrapper = null;
     let newNode = document.createTextNode(node.textContent);
-    if (tagsToPreserve.includes(node.nodeName) || node.querySelector(tagsToPreserve.join(',')) != null) {
+    if (
+      tagsToPreserve.includes(node.nodeName)
+      || (
+        typeof node.querySelector === 'function' // querySelector is not available for text nodes
+        && node.querySelector(tagsToPreserve.join(',')) != null
+      )
+    ) {
       newWrapper = document.createElement(node.nodeName);
       newNode = document.createDocumentFragment();
       const items = [];
