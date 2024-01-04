@@ -151,4 +151,11 @@ describe('Google Docs Converter', () => {
     const doc = parseHTML(docsSoap(documents.endFragment));
     expect(doc.textContent).toBe('Only text');
   });
+
+  it('handles multiple links', () => {
+    const doc = parseHTML(docsSoap(documents.linkserror));
+    expect(doc.querySelectorAll('a').length).toBe(2);
+    expect(doc.querySelector('a').href).toBe('https://360info.org/world-prepares-for-el-nino-as-records-fall/');
+    expect(doc.querySelector('a').textContent).toBe('El Niño');
+  });
 });
