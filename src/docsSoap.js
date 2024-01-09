@@ -128,7 +128,10 @@ const getCleanNode = (
       return [newWrapper];
     }
     return [node.cloneNode(true)];
+  } else if (node.tagName === 'A') {
+    return [applyInlineStyles(node)];
   }
+
   if (node.childNodes) {
     const nodes = [];
     for (let i = 0; i < node.childNodes.length; i++) {
